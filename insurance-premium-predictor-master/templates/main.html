@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Insurance Premium Prediction Model</title>
+</head>
+<form  action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Fill in your details:</legend>
+        <label for="Age">Age:</label>
+    <input id="Age" name="Age" type="number" min="0" max="100" required>
+    <br>
+    <br>
+    <label for="Diabetes">Diabetes:</label>
+    <input id="Diabetes" name="Diabetes" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="Blood_Pressure_Problems">Blood_Pressure_Problems:</label>
+    <input id="Blood_Pressure_Problems" name="Blood_Pressure_Problems" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="Any_Transplants">Any_Transplants:</label>
+    <input id="Any_Transplants" name="Any_Transplants" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="Any_Chronic_Diseases">Any_Chronic_Diseases:</label>
+    <input id="Any_Chronic_Diseases" name="Any_Chronic_Diseases" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="height_in_cm">height_in_cm:</label>
+    <input id="height_in_cm" name="height_in_cm" type="number" min="125" max="300" required>
+    <br>
+    <br>
+    <label for="Weight">Weight:</label>
+    <input id="Weight" name="Weight" type="number" min="3" max="180" required>
+    <br>
+    <br>
+    <label for="BMI">BMI:</label>
+    <input id="BMI" name="BMI" type="number" min="20" max="100" required>
+    <br>
+    <br>
+    <label for="Known_Allergies">Known_Allergies:</label>
+    <input id="Known_Allergies" name="Known_Allergies" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="History_Of_Cancer_InFamily">History_Of_Cancer_InFamily:</label>
+    <input id="History_Of_Cancer_InFamily" name="History_Of_Cancer_InFamily" type="number" min="0" max="1" required>
+    <br>
+    <br>
+    <label for="Number_Of_Major_Surgeries">Number_Of_Major_Surgeries:</label>
+    <input id="Number_Of_Major_Surgeries" name="Number_Of_Major_Surgeries" type="number" min="0" max="1" required>
+    <br>
+    <br>
+   <div style="text-align:center">  
+    <input type="submit" value="go" />  
+</div>
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Predicted insurance premium Per Year:
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
